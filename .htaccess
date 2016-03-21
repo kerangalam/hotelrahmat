@@ -1,0 +1,33 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+
+RewriteRule ^.*$ - [S=84]
+RewriteRule ^(post|contact|photo|video|link|download|room|404).html$ ./index.php?opsi=$1&modul=yes [QSA,L]
+RewriteRule ^(post|photo|video)/([0-9]{1,})/(.*).html$ ./index.php?opsi=$1&modul=yes&aksi=detail&id=$2&judul=$3 [QSA,L]
+
+RewriteRule ^register.html$ ./index.php?opsi=user&aksi=register [QSA,L]
+RewriteRule ^activate/(.*)/(.*)$ ./index.php?opsi=user&aksi=activate&id=$1&verifyemail=$2 [QSA,L]
+RewriteRule ^forgot-password.html$ ./index.php?opsi=user&aksi=forgot_password [QSA,L]
+
+RewriteRule ^(page|room)/(.*).html$ ./index.php?opsi=$1&modul=yes&aksi=detail&slug=$2 [QSA,L]
+
+RewriteRule ^category/([0-9]{1,})/(.*).html$ ./index.php?opsi=post&modul=yes&aksi=kategori&kid=$1&judul=$2 [QSA,L]
+RewriteRule ^kategori-hal-([0-9]{1,})-(.*)-([0-9]{1,})-([0-9]{1,})-([0-9]{1,}).html$ ./index.php?opsi=post&modul=yes&aksi=kategori&kid=$1&judul=$2&pg=$3&stg=$4&offset=$5 [QSA,L]
+RewriteRule ^post-page-([0-9]{1,})-([0-9]{1,})-([0-9]{1,}).html$ ./index.php?opsi=post&modul=yes&pg=$1&stg=$2&offset=$3 [QSA,L]
+RewriteRule ^tag/(.*).html$ ./index.php?opsi=post&modul=yes&aksi=tag&tag=$1 [QSA,L]
+RewriteRule ^archive/(.*).html$ ./index.php?opsi=post&modul=yes&aksi=archive&date=$1 [QSA,L]
+RewriteRule ^archive-page-(.*)-([0-9]{1,})-([0-9]{1,})-([0-9]{1,}).html$ ./index.php?opsi=post&modul=yes&aksi=archive&date=$1&pg=$2&stg=$3&offset=$4 [QSA,L]
+RewriteRule ^pesan/([0-9]{1,})/(.*).html$ ./index.php?opsi=post&modul=yes&aksi=pesan&UserId=$1 [QSA,L]
+RewriteRule ^rekomendasi/([0-9]{1,})/(.*).html$ ./index.php?opsi=post&modul=yes&aksi=recommend&id=$1&judul=$2 [QSA,L]
+RewriteRule ^cetak/([0-9]{1,})/(.*).html$ ./cetak.php?id=$1&judul=$2 [QSA,L]
+
+RewriteRule ^album/([0-9]{1,})/(.*).html$ ./index.php?opsi=photo&modul=yes&aksi=kategori&kid=$1&judul=$2 [QSA,L]
+RewriteRule ^photo-page-([0-9]{1,})-([0-9]{1,})-([0-9]{1,}).html$ ./index.php?opsi=photo&modul=yes&pg=$1&stg=$2&offset=$3 [QSA,L]
+
+RewriteRule ^video-cat/([0-9]{1,})/(.*).html$ ./index.php?opsi=video&modul=yes&aksi=kategori&kid=$1&judul=$2 [QSA,L]
+
+RewriteRule ^profile/([0-9]{1,})/(.*).html$ ./index.php?opsi=profile&modul=yes&aksi=detail&UserId=$1&nama=$2 [QSA,L]
+
+ErrorDocument 404 /404.html
