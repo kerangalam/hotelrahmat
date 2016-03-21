@@ -217,4 +217,5 @@ $tpl = new template ('id-content/themes/'.$theme.'/'.$theme.'.html');
 $tpl-> define_tag($define);
 
 $tpl-> cetak();
+//xxxxxxxxxxxxxxxx
 ?>
